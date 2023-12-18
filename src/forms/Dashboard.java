@@ -381,7 +381,7 @@ public class Dashboard extends javax.swing.JFrame {
         // First, Calculating wall (W)
         W = a1 * h1 * FCU;
         // Secondly, Calculating Earth
-        E = h1 * a4 * FCU;
+        E = h1 * a4 * γ;
         // Thirdly, Calculating the base (b)
         b = h2 * L * FCU;
         // Finally, Calculating the TVL
