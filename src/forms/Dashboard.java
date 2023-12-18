@@ -6,6 +6,8 @@
 package forms;
 
 import forms.phases.ActivePressure;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -14,6 +16,17 @@ import javax.swing.JOptionPane;
  * @author desti
  */
 public class Dashboard extends javax.swing.JFrame {
+    
+    /**
+     * Declare all needed variables for computation
+     * Pa - Active Pressure, PA - Earth Force, Ka - 
+     */
+    private int fileVal, lambdaVal;
+    private double Ka, Pa, PA;
+    public int FCU = 24;
+    public double Ps, q, h1, h2, a1, a2, a3, a4, a5, H, L, b, W, E, γ, μ;
+    public double THL, TVL, S_FOS, O_FOS;
+    NumberFormat formatter = new DecimalFormat("#0.00");
 
     /**
      * Creates new form Dashboard
@@ -21,6 +34,7 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
+        lblFCU.setText(String.valueOf(FCU));
     }
 
     /**
@@ -34,39 +48,253 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        btnPhases = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtLambda = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtFile = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtH_Input = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtL_input = new javax.swing.JTextField();
+        txtH1_Input = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtH2_input = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtA1_input = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtA3_Input = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtA4_Input = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtQ_Input = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtU_input = new javax.swing.JTextField();
+        lblFCU = new javax.swing.JLabel();
+        txtY_Input = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        btnChangeFCU = new javax.swing.JButton();
+        btnCalculateResult = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        lblPa = new javax.swing.JLabel();
+        lblPA = new javax.swing.JLabel();
+        lblSurcharge = new javax.swing.JLabel();
+        lblTHL = new javax.swing.JLabel();
+        lblTVL = new javax.swing.JLabel();
+        lblP = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard");
         setBackground(new java.awt.Color(255, 204, 204));
 
-        jPanel2.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnPhases.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnPhases.setText("In Phases");
-        btnPhases.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPhasesMouseClicked(evt);
+        jPanel3.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel2.setText("Enter Value for Lambda (λ)");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 16, -1, -1));
+        jPanel3.add(txtLambda, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 45, 310, 45));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel4.setText("Enter Value for File (Ø)");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
+        jPanel3.add(txtFile, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 45, 290, 45));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel3.setText("Overall Height of Wall (H)");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 106, -1, -1));
+        jPanel3.add(txtH_Input, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 135, 305, 45));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel5.setText("Overall Lenght of Base (L)");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
+        jPanel3.add(txtL_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(338, 135, 290, 45));
+        jPanel3.add(txtH1_Input, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 305, 45));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel6.setText("Hieght of Wall (h1)");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel7.setText("Height of Base (h2)");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
+        jPanel3.add(txtH2_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 290, 45));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel8.setText("Width of Wall (a1)");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        jPanel3.add(txtA1_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 305, 45));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel9.setText("Length of Toe (a3)");
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, -1, -1));
+        jPanel3.add(txtA3_Input, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, 290, 45));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel10.setText("Length of Heel (a4)");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
+        jPanel3.add(txtA4_Input, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 305, 45));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel11.setText("Load of Surcharge (q)");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
+        jPanel3.add(txtQ_Input, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, 290, 45));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel12.setText("Coefficient of Friction (μ)");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, -1, -1));
+        jPanel3.add(txtU_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 305, 45));
+
+        lblFCU.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblFCU.setText("0");
+        jPanel3.add(lblFCU, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 560, -1, -1));
+        jPanel3.add(txtY_Input, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, 290, 45));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel14.setText("Bulk Density of Soil (γ)");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel15.setText("FCU is given as : ");
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, -1, -1));
+
+        btnChangeFCU.setText("Change");
+        btnChangeFCU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeFCUActionPerformed(evt);
             }
         });
+        jPanel3.add(btnChangeFCU, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 560, -1, -1));
+
+        btnCalculateResult.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnCalculateResult.setText("Calculate Result");
+        btnCalculateResult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculateResultActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnCalculateResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 610, -1, 50));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnPhases, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clwall.png"))); // NOI18N
+
+        jPanel4.setBackground(new java.awt.Color(255, 204, 204));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel13.setText("Result:");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel16.setText("0");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnPhases, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel16)
+                .addContainerGap(855, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel16))
+                .addContainerGap(59, Short.MAX_VALUE))
+        );
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel17.setText("Detailed Analysis:");
+
+        lblPa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblPa.setText("Active Pressure (Pa):  ");
+
+        lblPA.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblPA.setText("Earth Force (PA): ");
+
+        lblSurcharge.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblSurcharge.setText("Surcharge: ");
+
+        lblTHL.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTHL.setText("Total Horizontal Load (THL): ");
+
+        lblTVL.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTVL.setText("Total Vertical Load (TVL): ");
+
+        lblP.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblP.setText("Earth Pressure (P):  ");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPa)
+                            .addComponent(jLabel17)
+                            .addComponent(lblPA)
+                            .addComponent(lblSurcharge)
+                            .addComponent(lblTHL)
+                            .addComponent(lblTVL)
+                            .addComponent(lblP))))
+                .addContainerGap(160, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(jLabel17)
+                .addGap(30, 30, 30)
+                .addComponent(lblPa)
+                .addGap(30, 30, 30)
+                .addComponent(lblPA)
+                .addGap(30, 30, 30)
+                .addComponent(lblSurcharge)
+                .addGap(30, 30, 30)
+                .addComponent(lblTHL)
+                .addGap(30, 30, 30)
+                .addComponent(lblTVL)
+                .addGap(30, 30, 30)
+                .addComponent(lblP)
+                .addContainerGap(919, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -75,14 +303,23 @@ public class Dashboard extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(660, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(29, 29, 29)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(588, Short.MAX_VALUE))
         );
 
@@ -99,13 +336,60 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(975, 708));
+        setSize(new java.awt.Dimension(1777, 1019));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPhasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPhasesMouseClicked
-        new ActivePressure(this, true).show();
-    }//GEN-LAST:event_btnPhasesMouseClicked
+    private void btnChangeFCUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeFCUActionPerformed
+        lblFCU.setText( JOptionPane.showInputDialog("Enter the value for FCU"));
+    }//GEN-LAST:event_btnChangeFCUActionPerformed
+
+    private void btnCalculateResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateResultActionPerformed
+        // Accept all input values into their correspoding variables
+        fileVal = Integer.parseInt(txtFile.getText());
+        lambdaVal = Integer.parseInt(txtLambda.getText());
+        H = Double.parseDouble(txtH_Input.getText());
+        h1 = Double.parseDouble(txtH1_Input.getText());
+        h2 = Double.parseDouble(txtH2_input.getText());
+        a1 = Double.parseDouble(txtA1_input.getText());
+        a3 = Double.parseDouble(txtA3_Input.getText());
+        a4 = Double.parseDouble(txtA4_Input.getText());
+        L = Double.parseDouble(txtL_input.getText());
+        μ = Double.parseDouble(txtU_input.getText());
+        γ = Double.parseDouble(txtY_Input.getText());
+        
+        // Calculate and display Active Pressure
+        Ka = (1 - Math.sin(fileVal)) / (1 + Math.sin(fileVal));
+        Pa = Ka * lambdaVal * H;
+        lblPa.setText(lblPa.getText() + " " + formatter.format(Pa));
+        
+        // Calculate and display Earth Force
+        PA = Pa * H * 0.5;
+        lblPA.setText(lblPA.getText() + " " + formatter.format(PA));
+        
+        // Calculate a2 and a5
+        a2 = (0.5 * a1) + a3;
+        a5 = (0.5 * a1) + a4;
+        
+        // Calculate and display Surcharge
+        Ps = Ka * q * H;
+        lblSurcharge.setText(lblSurcharge.getText() + " " + Ps);
+        
+        // Calculate and Display Total Horizontal Load (THL)
+        THL = Ps + PA;
+        lblTHL.setText(lblTHL.getText() + " " + THL);
+        
+        // Calculate and Display Total Vertical Load (TVL)
+        // First, Calculating wall (W)
+        W = a1 * h1 * FCU;
+        // Secondly, Calculating Earth
+        E = h1 * a4 * FCU;
+        // Thirdly, Calculating the base (b)
+        b = h2 * L * FCU;
+        // Finally, Calculating the TVL
+        TVL = W + b + E;
+        lblTVL.setText(lblTVL.getText() + " " + TVL);
+    }//GEN-LAST:event_btnCalculateResultActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,8 +427,48 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPhases;
+    private javax.swing.JButton btnCalculateResult;
+    private javax.swing.JButton btnChangeFCU;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel lblFCU;
+    private javax.swing.JLabel lblP;
+    private javax.swing.JLabel lblPA;
+    private javax.swing.JLabel lblPa;
+    private javax.swing.JLabel lblSurcharge;
+    private javax.swing.JLabel lblTHL;
+    private javax.swing.JLabel lblTVL;
+    private javax.swing.JTextField txtA1_input;
+    private javax.swing.JTextField txtA3_Input;
+    private javax.swing.JTextField txtA4_Input;
+    private javax.swing.JTextField txtFile;
+    private javax.swing.JTextField txtH1_Input;
+    private javax.swing.JTextField txtH2_input;
+    private javax.swing.JTextField txtH_Input;
+    private javax.swing.JTextField txtL_input;
+    private javax.swing.JTextField txtLambda;
+    private javax.swing.JTextField txtQ_Input;
+    private javax.swing.JTextField txtU_input;
+    private javax.swing.JTextField txtY_Input;
     // End of variables declaration//GEN-END:variables
 }

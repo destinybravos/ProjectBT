@@ -7,6 +7,7 @@ package forms.phases;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -145,7 +146,7 @@ public class ActivePressure extends javax.swing.JDialog {
         fileVal = Integer.parseInt(txtFile.getText());
         lambdaVal = Integer.parseInt(txtLambda.getText());
         heightVal = Integer.parseInt(txtHeight.getText());
-        Ka = Math.pow(Math.tan(45 - (fileVal/2)), 2);
+        Ka = (1 - Math.sin(fileVal)) / (1 + Math.sin(fileVal));
         Pa = Ka * lambdaVal * heightVal;
         PA = Pa * heightVal * 0.5;
         lblResult1.setText("Active Pressure: " + formatter.format(Pa));
