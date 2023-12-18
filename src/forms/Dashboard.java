@@ -355,7 +355,9 @@ public class Dashboard extends javax.swing.JFrame {
         q = Double.parseDouble(txtQ_Input.getText());
         
         // Calculate and display Active Pressure
-        Ka = (1 - Math.sin(phiVal)) / (1 + Math.sin(phiVal));
+        // Convert PHI val to redian
+        double phi = phiVal * (Math.PI / 180);
+        Ka = (1 - Math.sin(phi)) / (1 + Math.sin(phi));
         Pa = Ka * lambdaVal * H;
         lblPa.setText(lblPa.getText() + " " + formatter.format(Pa));
         
