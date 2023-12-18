@@ -21,7 +21,7 @@ public class Dashboard extends javax.swing.JFrame {
      * Declare all needed variables for computation
      * Pa - Active Pressure, PA - Earth Force, Ka - 
      */
-    private int fileVal, lambdaVal;
+    private int phiVal, lambdaVal;
     private double Ka, Pa, PA;
     public int FCU = 24;
     public double Ps, q, h1, h2, a1, a2, a3, a4, a5, H, L, b, W, E, γ, μ;
@@ -52,7 +52,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtLambda = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtFile = new javax.swing.JTextField();
+        txtPhi = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtH_Input = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -77,7 +77,6 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         btnChangeFCU = new javax.swing.JButton();
         btnCalculateResult = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -109,7 +108,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("Enter Value for File (Ø)");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
-        jPanel3.add(txtFile, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 45, 290, 45));
+        jPanel3.add(txtPhi, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 45, 290, 45));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setText("Overall Height of Wall (H)");
@@ -202,8 +201,6 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clwall.png"))); // NOI18N
-
         jPanel4.setBackground(new java.awt.Color(255, 204, 204));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -234,7 +231,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel17.setText("Detailed Analysis:");
+        jLabel17.setText("DETAILED ANALYSIS:");
 
         lblPa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPa.setText("Active Pressure (Pa):  ");
@@ -302,23 +299,21 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
                 .addGap(29, 29, 29)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(36, 36, 36)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(588, Short.MAX_VALUE))
         );
@@ -346,7 +341,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void btnCalculateResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateResultActionPerformed
         // Accept all input values into their correspoding variables
-        fileVal = Integer.parseInt(txtFile.getText());
+        phiVal = Integer.parseInt(txtPhi.getText());
         lambdaVal = Integer.parseInt(txtLambda.getText());
         H = Double.parseDouble(txtH_Input.getText());
         h1 = Double.parseDouble(txtH1_Input.getText());
@@ -357,9 +352,10 @@ public class Dashboard extends javax.swing.JFrame {
         L = Double.parseDouble(txtL_input.getText());
         μ = Double.parseDouble(txtU_input.getText());
         γ = Double.parseDouble(txtY_Input.getText());
+        q = Double.parseDouble(txtQ_Input.getText());
         
         // Calculate and display Active Pressure
-        Ka = (1 - Math.sin(fileVal)) / (1 + Math.sin(fileVal));
+        Ka = (1 - Math.sin(phiVal)) / (1 + Math.sin(phiVal));
         Pa = Ka * lambdaVal * H;
         lblPa.setText(lblPa.getText() + " " + formatter.format(Pa));
         
@@ -369,7 +365,7 @@ public class Dashboard extends javax.swing.JFrame {
         
         // Calculate a2 and a5
         a2 = (0.5 * a1) + a3;
-        a5 = (0.5 * a1) + a4;
+        a5 = a1 + a3 + (0.5 * a4);
         
         // Calculate and display Surcharge
         Ps = Ka * q * H;
@@ -429,7 +425,6 @@ public class Dashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalculateResult;
     private javax.swing.JButton btnChangeFCU;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -461,12 +456,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField txtA1_input;
     private javax.swing.JTextField txtA3_Input;
     private javax.swing.JTextField txtA4_Input;
-    private javax.swing.JTextField txtFile;
     private javax.swing.JTextField txtH1_Input;
     private javax.swing.JTextField txtH2_input;
     private javax.swing.JTextField txtH_Input;
     private javax.swing.JTextField txtL_input;
     private javax.swing.JTextField txtLambda;
+    private javax.swing.JTextField txtPhi;
     private javax.swing.JTextField txtQ_Input;
     private javax.swing.JTextField txtU_input;
     private javax.swing.JTextField txtY_Input;
