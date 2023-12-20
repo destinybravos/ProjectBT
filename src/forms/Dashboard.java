@@ -24,8 +24,9 @@ public class Dashboard extends javax.swing.JFrame {
     private int phiVal, lambdaVal;
     private double Ka, Pa, PA;
     public int FCU = 24;
+    public int B = 1;
     public double Ps, q, h1, h2, a1, a2, a3, a4, a5, H, L, b, W, E, γ, μ;
-    public double THL, TVL, S_FOS, O_FOS;
+    public double THL, TVL, S_FOS, O_FOS, S, P1, P2, M, RM, OM;
     NumberFormat formatter = new DecimalFormat("#0.00");
 
     /**
@@ -34,7 +35,8 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        lblFCU.setText(String.valueOf(FCU));
+        lblFCU.setText(String.valueOf(FCU));        
+        lblB.setText(String.valueOf(B));
     }
 
     /**
@@ -49,8 +51,6 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        txtLambda = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtPhi = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -77,17 +77,24 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         btnChangeFCU = new javax.swing.JButton();
         btnCalculateResult = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        lblB = new javax.swing.JLabel();
+        btnChangeB = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        lblResult = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         lblPa = new javax.swing.JLabel();
         lblPA = new javax.swing.JLabel();
         lblSurcharge = new javax.swing.JLabel();
         lblTHL = new javax.swing.JLabel();
         lblTVL = new javax.swing.JLabel();
-        lblP = new javax.swing.JLabel();
+        lblOM = new javax.swing.JLabel();
+        lblRM = new javax.swing.JLabel();
+        lblM = new javax.swing.JLabel();
+        lblP1 = new javax.swing.JLabel();
+        lblP2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard");
@@ -99,11 +106,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 204));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel2.setText("Enter Value for Lambda (λ)");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 16, -1, -1));
-        jPanel3.add(txtLambda, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 45, 310, 45));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("Enter Value for File (Ø)");
@@ -158,11 +160,11 @@ public class Dashboard extends javax.swing.JFrame {
         lblFCU.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblFCU.setText("0");
         jPanel3.add(lblFCU, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 560, -1, -1));
-        jPanel3.add(txtY_Input, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, 290, 45));
+        jPanel3.add(txtY_Input, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 300, 45));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel14.setText("Bulk Density of Soil (γ)");
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, -1, -1));
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 200, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel15.setText("FCU is given as : ");
@@ -185,6 +187,22 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jPanel3.add(btnCalculateResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 610, -1, 50));
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel16.setText("Unit Width (B) is given as : ");
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, -1, -1));
+
+        lblB.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblB.setText("0");
+        jPanel3.add(lblB, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 610, -1, -1));
+
+        btnChangeB.setText("Change");
+        btnChangeB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeBActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnChangeB, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 610, -1, -1));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -206,8 +224,8 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel13.setText("Result:");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel16.setText("0");
+        lblResult.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblResult.setText("0");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -217,7 +235,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel16)
+                .addComponent(lblResult)
                 .addContainerGap(855, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -226,7 +244,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel16))
+                    .addComponent(lblResult))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
@@ -248,8 +266,20 @@ public class Dashboard extends javax.swing.JFrame {
         lblTVL.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTVL.setText("Total Vertical Load (TVL): ");
 
-        lblP.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblP.setText("Earth Pressure (P):  ");
+        lblOM.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblOM.setText("Overturning Moment (OM): ");
+
+        lblRM.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblRM.setText("Resisting Moment (RM): ");
+
+        lblM.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblM.setText("Moment (M): ");
+
+        lblP1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblP1.setText("Earth Pressure (P1):  ");
+
+        lblP2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblP2.setText("Earth Pressure (P2):  ");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -269,7 +299,11 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(lblSurcharge)
                             .addComponent(lblTHL)
                             .addComponent(lblTVL)
-                            .addComponent(lblP))))
+                            .addComponent(lblOM)
+                            .addComponent(lblRM)
+                            .addComponent(lblM)
+                            .addComponent(lblP1)
+                            .addComponent(lblP2))))
                 .addContainerGap(160, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -290,8 +324,16 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(lblTVL)
                 .addGap(30, 30, 30)
-                .addComponent(lblP)
-                .addContainerGap(919, Short.MAX_VALUE))
+                .addComponent(lblRM)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblOM)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblM)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblP1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblP2)
+                .addContainerGap(843, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -336,13 +378,15 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnChangeFCUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeFCUActionPerformed
-        lblFCU.setText( JOptionPane.showInputDialog("Enter the value for FCU"));
+        String fcu = JOptionPane.showInputDialog("Enter the value for FCU");
+        lblFCU.setText(fcu);
+        FCU = Integer.parseInt(fcu);
     }//GEN-LAST:event_btnChangeFCUActionPerformed
 
     private void btnCalculateResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateResultActionPerformed
         // Accept all input values into their correspoding variables
         phiVal = Integer.parseInt(txtPhi.getText());
-        lambdaVal = Integer.parseInt(txtLambda.getText());
+//        lambdaVal = Integer.parseInt(txtLambda.getText());
         H = Double.parseDouble(txtH_Input.getText());
         h1 = Double.parseDouble(txtH1_Input.getText());
         h2 = Double.parseDouble(txtH2_input.getText());
@@ -371,11 +415,11 @@ public class Dashboard extends javax.swing.JFrame {
         
         // Calculate and display Surcharge
         Ps = Ka * q * H;
-        lblSurcharge.setText(lblSurcharge.getText() + " " + Ps);
+        lblSurcharge.setText(lblSurcharge.getText() + " " + formatter.format(Ps));
         
         // Calculate and Display Total Horizontal Load (THL)
         THL = Ps + PA;
-        lblTHL.setText(lblTHL.getText() + " " + THL);
+        lblTHL.setText(lblTHL.getText() + " " + formatter.format(THL));
         
         // Calculate and Display Total Vertical Load (TVL)
         // First, Calculating wall (W)
@@ -386,8 +430,64 @@ public class Dashboard extends javax.swing.JFrame {
         b = h2 * L * FCU;
         // Finally, Calculating the TVL
         TVL = W + b + E;
-        lblTVL.setText(lblTVL.getText() + " " + TVL);
+        lblTVL.setText(lblTVL.getText() + " " + formatter.format(TVL));
+        
+        // Checking Stability
+        // First, Calculate sliding
+        S = μ * (1.0 * TVL);
+        // μ * (1.0 * TVL) >= (1.6 * THL);
+        
+        // Second Step, Sliding FOS
+        double RF = (μ * TVL);
+        double SF = THL;
+        S_FOS = RF / SF;
+        
+        // Check if the S_FOS is greater than or equal 1.6
+        if(S_FOS >= 1.6){
+            
+        }
+        
+        // Third step is to check for overturning moment,OM
+        double EM = PA * (H/3);
+        double SM = Ps * (H/2);
+        OM = EM + SM;
+        lblOM.setText(lblOM.getText() + " " + formatter.format(OM));
+        
+        // Fourth Step is to Check for Resisting Moment
+        double WRM = W * a2;
+        double BRM = b * (0.5 * L);
+        double ERM = E * a5;
+        RM = WRM + BRM + ERM;
+        lblRM.setText(lblRM.getText() + " " + formatter.format(RM));
+        
+        // Overturning moment FOS
+        O_FOS = (RM / OM);
+        
+        // Check if the o_FOS is greater than or equal 2.0
+        if(O_FOS >= 2.0){
+            
+        }
+        
+        // Calculating Moment using Clockwise Moment(CM) and Counter Clockwise(CCM)
+        double CM = E * ((0.5 * a4) + a1 + a3) - (0.5 * L);
+        double CCM = (PA * 2.0) + (Ps * 3.0) + (W * ((0.5 * L) - a2));
+        M = CCM - CM;
+        lblM.setText(lblM.getText() + " " + formatter.format(M));
+        
+        
+        // Calculating Earth Pressure (P)
+        P1 = (TVL / (B * L)) + ((6 * M) / (B * Math.pow(L, 2)));
+        P2 = (TVL / (B * L)) - ((6 * M) / (B * Math.pow(L, 2)));
+        lblP1.setText(lblP1.getText() + " " + formatter.format(P1));
+        lblP2.setText(lblP2.getText() + " " + formatter.format(P2));
+        lblResult.setText(formatter.format(P1) + " or " + formatter.format(P2));
     }//GEN-LAST:event_btnCalculateResultActionPerformed
+
+    private void btnChangeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeBActionPerformed
+        String b = JOptionPane.showInputDialog("Enter the value for Unit Width (B)");
+        lblB.setText(b);
+        B = Integer.parseInt(b);
+    }//GEN-LAST:event_btnChangeBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -426,6 +526,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalculateResult;
+    private javax.swing.JButton btnChangeB;
     private javax.swing.JButton btnChangeFCU;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -435,7 +536,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -448,10 +548,16 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel lblB;
     private javax.swing.JLabel lblFCU;
-    private javax.swing.JLabel lblP;
+    private javax.swing.JLabel lblM;
+    private javax.swing.JLabel lblOM;
+    private javax.swing.JLabel lblP1;
+    private javax.swing.JLabel lblP2;
     private javax.swing.JLabel lblPA;
     private javax.swing.JLabel lblPa;
+    private javax.swing.JLabel lblRM;
+    private javax.swing.JLabel lblResult;
     private javax.swing.JLabel lblSurcharge;
     private javax.swing.JLabel lblTHL;
     private javax.swing.JLabel lblTVL;
@@ -462,7 +568,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField txtH2_input;
     private javax.swing.JTextField txtH_Input;
     private javax.swing.JTextField txtL_input;
-    private javax.swing.JTextField txtLambda;
     private javax.swing.JTextField txtPhi;
     private javax.swing.JTextField txtQ_Input;
     private javax.swing.JTextField txtU_input;
