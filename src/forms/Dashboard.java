@@ -80,6 +80,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         lblB = new javax.swing.JLabel();
         btnChangeB = new javax.swing.JButton();
+        btnResetForm = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -95,6 +96,8 @@ public class Dashboard extends javax.swing.JFrame {
         lblM = new javax.swing.JLabel();
         lblP1 = new javax.swing.JLabel();
         lblP2 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        btnImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard");
@@ -108,7 +111,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel4.setText("Enter Value for File (Ø)");
+        jLabel4.setText("Enter Value for Phi (Ø)");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
         jPanel3.add(txtPhi, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 45, 290, 45));
 
@@ -185,7 +188,7 @@ public class Dashboard extends javax.swing.JFrame {
                 btnCalculateResultActionPerformed(evt);
             }
         });
-        jPanel3.add(btnCalculateResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 610, -1, 50));
+        jPanel3.add(btnCalculateResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 600, -1, 50));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel16.setText("Unit Width (B) is given as : ");
@@ -202,6 +205,15 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnChangeB, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 610, -1, -1));
+
+        btnResetForm.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnResetForm.setText("Reset Form");
+        btnResetForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetFormActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnResetForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 540, 180, 50));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -281,6 +293,29 @@ public class Dashboard extends javax.swing.JFrame {
         lblP2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblP2.setText("Earth Pressure (P2):  ");
 
+        btnImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rt_wall2.jpg"))); // NOI18N
+        btnImage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImageMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnImage, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(0, 16, Short.MAX_VALUE)
+                .addComponent(btnImage, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -293,33 +328,42 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPa)
-                            .addComponent(jLabel17)
-                            .addComponent(lblPA)
-                            .addComponent(lblSurcharge)
                             .addComponent(lblTHL)
                             .addComponent(lblTVL)
                             .addComponent(lblOM)
                             .addComponent(lblRM)
                             .addComponent(lblM)
                             .addComponent(lblP1)
-                            .addComponent(lblP2))))
+                            .addComponent(lblP2)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPA)
+                                    .addComponent(lblSurcharge)
+                                    .addComponent(lblPa)
+                                    .addComponent(jLabel17))
+                                .addGap(293, 293, 293)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(160, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(jLabel17)
-                .addGap(30, 30, 30)
-                .addComponent(lblPa)
-                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(jLabel17)
+                        .addGap(30, 30, 30)
+                        .addComponent(lblPa)
+                        .addGap(44, 44, 44))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(lblPA)
                 .addGap(30, 30, 30)
                 .addComponent(lblSurcharge)
-                .addGap(30, 30, 30)
+                .addGap(42, 42, 42)
                 .addComponent(lblTHL)
                 .addGap(30, 30, 30)
                 .addComponent(lblTVL)
@@ -384,103 +428,108 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChangeFCUActionPerformed
 
     private void btnCalculateResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateResultActionPerformed
-        // Accept all input values into their correspoding variables
-        phiVal = Integer.parseInt(txtPhi.getText());
-//        lambdaVal = Integer.parseInt(txtLambda.getText());
-        H = Double.parseDouble(txtH_Input.getText());
-        h1 = Double.parseDouble(txtH1_Input.getText());
-        h2 = Double.parseDouble(txtH2_input.getText());
-        a1 = Double.parseDouble(txtA1_input.getText());
-        a3 = Double.parseDouble(txtA3_Input.getText());
-        a4 = Double.parseDouble(txtA4_Input.getText());
-        L = Double.parseDouble(txtL_input.getText());
-        μ = Double.parseDouble(txtU_input.getText());
-        γ = Double.parseDouble(txtY_Input.getText());
-        q = Double.parseDouble(txtQ_Input.getText());
-        
-        // Calculate and display Active Pressure
-        // Convert PHI val to redian
-        double phi = phiVal * (Math.PI / 180);
-        Ka = (1 - Math.sin(phi)) / (1 + Math.sin(phi));
-        Pa = Ka * lambdaVal * H;
-        lblPa.setText(lblPa.getText() + " " + formatter.format(Pa));
-        
-        // Calculate and display Earth Force
-        PA = Pa * H * 0.5;
-        lblPA.setText(lblPA.getText() + " " + formatter.format(PA));
-        
-        // Calculate a2 and a5
-        a2 = (0.5 * a1) + a3;
-        a5 = a1 + a3 + (0.5 * a4);
-        
-        // Calculate and display Surcharge
-        Ps = Ka * q * H;
-        lblSurcharge.setText(lblSurcharge.getText() + " " + formatter.format(Ps));
-        
-        // Calculate and Display Total Horizontal Load (THL)
-        THL = Ps + PA;
-        lblTHL.setText(lblTHL.getText() + " " + formatter.format(THL));
-        
-        // Calculate and Display Total Vertical Load (TVL)
-        // First, Calculating wall (W)
-        W = a1 * h1 * FCU;
-        // Secondly, Calculating Earth
-        E = h1 * a4 * γ;
-        // Thirdly, Calculating the base (b)
-        b = h2 * L * FCU;
-        // Finally, Calculating the TVL
-        TVL = W + b + E;
-        lblTVL.setText(lblTVL.getText() + " " + formatter.format(TVL));
-        
-        // Checking Stability
-        // First, Calculate sliding
-        S = μ * (1.0 * TVL);
-        // μ * (1.0 * TVL) >= (1.6 * THL);
-        
-        // Second Step, Sliding FOS
-        double RF = (μ * TVL);
-        double SF = THL;
-        S_FOS = RF / SF;
-        
-        // Check if the S_FOS is greater than or equal 1.6
-        if(S_FOS >= 1.6){
-            
+        try {
+            // Accept all input values into their correspoding variables
+            phiVal = Integer.parseInt(txtPhi.getText());
+            H = Double.parseDouble(txtH_Input.getText());
+            h1 = Double.parseDouble(txtH1_Input.getText());
+            h2 = Double.parseDouble(txtH2_input.getText());
+            a1 = Double.parseDouble(txtA1_input.getText());
+            a3 = Double.parseDouble(txtA3_Input.getText());
+            a4 = Double.parseDouble(txtA4_Input.getText());
+            L = Double.parseDouble(txtL_input.getText());
+            μ = Double.parseDouble(txtU_input.getText());
+            γ = Double.parseDouble(txtY_Input.getText());
+            q = Double.parseDouble(txtQ_Input.getText());
+
+            // Calculate and display Active Pressure
+            // Convert PHI val to redian
+            double phi = phiVal * (Math.PI / 180);
+            Ka = (1 - Math.sin(phi)) / (1 + Math.sin(phi));
+            Pa = Ka * γ * H;
+            lblPa.setText(lblPa.getText() + " " + formatter.format(Pa)+ " KN/M");
+
+            // Calculate and display Earth Force
+            PA = Pa * H * 0.5;
+            lblPA.setText(lblPA.getText() + " " + formatter.format(PA)+ " KN");
+
+            // Calculate a2 and a5
+            a2 = (0.5 * a1) + a3;
+            a5 = a1 + a3 + (0.5 * a4);
+
+            // Calculate and display Surcharge
+            Ps = Ka * q * H;
+            lblSurcharge.setText(lblSurcharge.getText() + " " + formatter.format(Ps) + " KN/M");
+
+            // Calculate and Display Total Horizontal Load (THL)
+            THL = Ps + PA;
+            lblTHL.setText(lblTHL.getText() + " " + formatter.format(THL)+ " KN");
+
+            // Calculate and Display Total Vertical Load (TVL)
+            // First, Calculating wall (W)
+            W = a1 * h1 * FCU;
+            // Secondly, Calculating Earth
+            E = h1 * a4 * γ;
+            // Thirdly, Calculating the base (b)
+            b = h2 * L * FCU;
+            // Finally, Calculating the TVL
+            TVL = W + b + E;
+            lblTVL.setText(lblTVL.getText() + " " + formatter.format(TVL)+ " KN");
+
+            // Checking Stability
+            // First, Calculate sliding
+            S = μ * (1.0 * TVL);
+            // μ * (1.0 * TVL) >= (1.6 * THL);
+
+            // Second Step, Sliding FOS
+            double RF = (μ * TVL);
+            double SF = THL;
+            S_FOS = RF / SF;
+
+            // Check if the S_FOS is less than 1.6
+            if(S_FOS < 1.6){
+                JOptionPane.showMessageDialog(rootPane, "Retaining Wall Not Safe against Sliding. Factor of saftey is less than 1.6.");
+            }
+
+            // Third step is to check for overturning moment,OM
+            double EM = PA * (H/3);
+            double SM = Ps * (H/2);
+            OM = EM + SM;
+            lblOM.setText(lblOM.getText() + " " + formatter.format(OM)+ " KN/M");
+
+            // Fourth Step is to Check for Resisting Moment
+            double WRM = W * a2;
+            double BRM = b * (0.5 * L);
+            double ERM = E * a5;
+            RM = WRM + BRM + ERM;
+            lblRM.setText(lblRM.getText() + " " + formatter.format(RM)+ " KN/M");
+
+            // Overturning moment FOS
+            O_FOS = (RM / OM);
+
+            // Check if the O_FOS is less 2.0
+            if(O_FOS < 2.0){
+                JOptionPane.showMessageDialog(rootPane, "Retaining Wall Not Safe. Overturning Moment's Factor of saftey is less than 2.0");
+            }
+
+            // Calculating Moment using Clockwise Moment(CM) and Counter Clockwise(CCM)
+            double CM = E * (a5 - (0.5 * L));
+            double CCM = (PA * 2.0) + (Ps * 3.0) + (W * ((0.5 * L) - a2));
+            M = CCM - CM;
+            System.out.println("CM = " + CM);
+            System.out.println("CCM = " + CCM);
+            lblM.setText(lblM.getText() + " " + formatter.format(M)+ " KN/M");
+
+
+            // Calculating Earth Pressure (P)
+            P1 = (TVL / (B * L)) + ((6 * M) / (B * Math.pow(L, 2)));
+            P2 = (TVL / (B * L)) - ((6 * M) / (B * Math.pow(L, 2)));
+            lblP1.setText(lblP1.getText() + " " + formatter.format(P1)+ " KN/M");
+            lblP2.setText(lblP2.getText() + " " + formatter.format(P2)+ " KN/M");
+            lblResult.setText(formatter.format(P1) + " KN/M or " + formatter.format(P2)+ " KN/M");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Invalid or Missing Data! Kindly make sure all input were entered correctly.");
         }
-        
-        // Third step is to check for overturning moment,OM
-        double EM = PA * (H/3);
-        double SM = Ps * (H/2);
-        OM = EM + SM;
-        lblOM.setText(lblOM.getText() + " " + formatter.format(OM));
-        
-        // Fourth Step is to Check for Resisting Moment
-        double WRM = W * a2;
-        double BRM = b * (0.5 * L);
-        double ERM = E * a5;
-        RM = WRM + BRM + ERM;
-        lblRM.setText(lblRM.getText() + " " + formatter.format(RM));
-        
-        // Overturning moment FOS
-        O_FOS = (RM / OM);
-        
-        // Check if the o_FOS is greater than or equal 2.0
-        if(O_FOS >= 2.0){
-            
-        }
-        
-        // Calculating Moment using Clockwise Moment(CM) and Counter Clockwise(CCM)
-        double CM = E * ((0.5 * a4) + a1 + a3) - (0.5 * L);
-        double CCM = (PA * 2.0) + (Ps * 3.0) + (W * ((0.5 * L) - a2));
-        M = CCM - CM;
-        lblM.setText(lblM.getText() + " " + formatter.format(M));
-        
-        
-        // Calculating Earth Pressure (P)
-        P1 = (TVL / (B * L)) + ((6 * M) / (B * Math.pow(L, 2)));
-        P2 = (TVL / (B * L)) - ((6 * M) / (B * Math.pow(L, 2)));
-        lblP1.setText(lblP1.getText() + " " + formatter.format(P1));
-        lblP2.setText(lblP2.getText() + " " + formatter.format(P2));
-        lblResult.setText(formatter.format(P1) + " or " + formatter.format(P2));
     }//GEN-LAST:event_btnCalculateResultActionPerformed
 
     private void btnChangeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeBActionPerformed
@@ -488,6 +537,37 @@ public class Dashboard extends javax.swing.JFrame {
         lblB.setText(b);
         B = Integer.parseInt(b);
     }//GEN-LAST:event_btnChangeBActionPerformed
+
+    private void btnResetFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetFormActionPerformed
+        lblResult.setText("0");
+        lblP2.setText("Earth Pressure (P2):  ");
+        lblP1.setText("Earth Pressure (P1):  ");
+        lblM.setText("Moment (M): ");
+        lblRM.setText("Resisting Moment (RM): ");
+        lblOM.setText("Overturning Moment (OM): ");
+        lblTVL.setText("Total Vertical Load (TVL): ");
+        lblTHL.setText("Total Horizontal Load (THL): ");
+        lblSurcharge.setText("Surcharge: ");
+        lblPA.setText("Earth Force (PA): ");
+        lblPa.setText("Active Pressure (Pa):  ");
+        
+        // Clear Input boxes as well
+        txtH_Input.setText("");
+        txtH1_Input.setText("");
+        txtH2_input.setText("");
+        txtA1_input.setText("");
+        txtA3_Input.setText("");
+        txtA4_Input.setText("");
+        txtL_input.setText("");
+        txtU_input.setText("");
+        txtY_Input.setText("");
+        txtQ_Input.setText("");
+        txtPhi.setText("");
+    }//GEN-LAST:event_btnResetFormActionPerformed
+
+    private void btnImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImageMouseClicked
+        new ImageViewer(this, true).show(true);
+    }//GEN-LAST:event_btnImageMouseClicked
 
     /**
      * @param args the command line arguments
@@ -528,6 +608,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnCalculateResult;
     private javax.swing.JButton btnChangeB;
     private javax.swing.JButton btnChangeFCU;
+    private javax.swing.JLabel btnImage;
+    private javax.swing.JButton btnResetForm;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -548,6 +630,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel lblB;
     private javax.swing.JLabel lblFCU;
     private javax.swing.JLabel lblM;
